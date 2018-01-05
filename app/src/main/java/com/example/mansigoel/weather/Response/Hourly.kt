@@ -2,9 +2,10 @@ package com.example.mansigoel.weather.Response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
-class Hourly {
+class Hourly: Serializable {
 
     @SerializedName("summary")
     @Expose
