@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.mansigoel.weather.MainActivity">
 
-    <ProgressBar
-        android:id="@+id/pb_loader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/iv_splash"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:visibility="visible"
+        android:src="@drawable/twitter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

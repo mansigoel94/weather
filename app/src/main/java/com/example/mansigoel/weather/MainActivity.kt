@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.example.mansigoel.weather.Response.*
 import com.example.mansigoel.weather.adapter.DailyAdapter
 import com.example.mansigoel.weather.adapter.HourAdapter
@@ -23,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        
+        val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.my_animation)
+        iv_splash.animation = animation
 
         val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
@@ -42,7 +47,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Mansi", "Response")
                 if (response != null) {
                     if (response.isSuccessful) {
-                        pb_loader.visibility = View.GONE
+                        iv_splash.clearAnimation()
+                        iv_splash.visibility = View.GONE
                         fragmentPagerAdapter = MainPagerAdapter(
                                 supportFragmentManager, response?.body())
                         //view pager to show upto 3 weather reports
