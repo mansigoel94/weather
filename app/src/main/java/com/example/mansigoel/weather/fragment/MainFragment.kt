@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.mansigoel.weather.R
-import com.example.mansigoel.weather.R.id.*
 import com.example.mansigoel.weather.Response.Currently
 import com.example.mansigoel.weather.Response.Daily
 import com.example.mansigoel.weather.Response.Hourly
@@ -16,8 +15,6 @@ import com.example.mansigoel.weather.Response.Root
 import com.example.mansigoel.weather.Utils
 import com.example.mansigoel.weather.adapter.DailyAdapter
 import com.example.mansigoel.weather.adapter.HourAdapter
-import kotlinx.android.synthetic.main.view_main.*
-import kotlinx.android.synthetic.main.extra_card.*
 import kotlinx.android.synthetic.main.extra_card.view.*
 import kotlinx.android.synthetic.main.view_main.view.*
 
@@ -29,12 +26,15 @@ class MainFragment : Fragment() {
     private var hourly: Hourly? = null;
     private var daily: Daily? = null;
 
+    private lateinit var city: String
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.view_main, container, false)
         if (arguments != null) {
             root = arguments.getSerializable("response") as Root?
+            city = arguments.getString("city") as String
             updateUI(view);
         }
         return view
@@ -42,14 +42,14 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     companion object {
-        fun newInstance(response: Root?): MainFragment {
+        fun newInstance(response: Root?, location: String): MainFragment {
             val fragment = MainFragment()
             val args = Bundle()
             args.putSerializable("response", response)
+            args.putString("city", location)
             fragment.arguments = args
             return fragment
         }
@@ -58,8 +58,7 @@ class MainFragment : Fragment() {
     private fun updateUI(view: View) {
         view.cl_container.visibility = View.VISIBLE;
         //populating place hardcoded coz it is not present in Json
-        //TODO Reverse logic to get city name from latitude longitude
-        view.tv_place.text = "PUNE";
+        view.tv_place.text = city;
 
         //populating weather summary, average temp and today's day name from currently object
         currently = root?.currently;
