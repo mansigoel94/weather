@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         val city = addresses[0].locality
         Log.d("Mansi", "city : " + city);
 
-
         val call = apiInterface.fetchData(
                 location!!.latitude, location!!.longitude, UNIT);
         call.enqueue(object : Callback<Root> {
