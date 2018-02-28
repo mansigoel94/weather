@@ -1,1 +1,5 @@
-![alt text](screenshots/filename.png "Description goes here")
+# Weather Monitor
+## Day 2 Challenge
+
+![Optional Text](../master/weather.gif)
+
